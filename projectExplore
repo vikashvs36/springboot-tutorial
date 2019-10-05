@@ -12,6 +12,8 @@ master
   ------------> 'database/h2_db'
   |
   ------------> 'database/liquibase'
+  |
+  ------------> 'database/mysql_db'
 
 
 
@@ -38,5 +40,9 @@ master
   Branch : 'database/liquibase'
   Message : Implemented connection with my and use Liquibase Database Migration and tested with the Crud operation using Rest API.
 
+--------- 05-10-2019 -----------------
+> Commit : "Mysql database Integration"
+  Branch : 'database/mysql_db'
+  Message : Implement mysql database with custom schema and data.
 
 
