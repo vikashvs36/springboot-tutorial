@@ -71,3 +71,29 @@ This tutorial is for beginners and it's purpose to create that learn one by one 
 * schema.sql and data.sql file name is case sensitive.
 * In a JPA-based app, you can choose to let Hibernate create the schema or use schema.sql, but you cannot do both. Make sure to disable 'spring.jpa.hibernate.ddl-auto' if you use schema.sql.
 * import.sql file name can be use instead of data.sql, if we are using db initialization by hibernate.
+
+> **Crud Operation Using Rest API**
+
+**Step 1 : Add Dependency**
+    
+    <!-- Add Jpa dependency for use JpaRepository for DAO -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    
+    Note : For testing purpose we can add any database dependency.
+
+**Rest API Details**
+
+    Controller : 'UserController'
+        > Get     : '/api/users'
+        > Get     : '/api/users/{userId}'
+        > Post    : '/api/users'
+                    Content-Type: application/json
+                    {
+    	                "username":"Raj1",
+    	                "password" : "A123456"
+                    }
+        > Delete  : '/api/users/{userId}'
+        > Delete  : '/api/users'
