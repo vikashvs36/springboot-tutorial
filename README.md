@@ -24,3 +24,8 @@ This tutorial is for beginners and it's purpose to create that learn one by one 
 
     Branch : 'database/mysql_db'
     commit : 1 parent 3cdbae1 commit 6228a44c6a986229131c8ae1007cd0218635245d
+    
+> **MongoDb Database Implementation**
+
+    Branch : 'database/mongo_db'
+    commit : 1 parent 4242600 commit ab766431a7c4c1f4e94bbccdabc3cc4fbe79f85c
