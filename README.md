@@ -24,3 +24,50 @@ This tutorial is for beginners and it's purpose to create that learn one by one 
 
     Branch : 'database/mysql_db'
     commit : 1 parent 3cdbae1 commit 6228a44c6a986229131c8ae1007cd0218635245d
+    
+> **MongoDb Database Implementation**
+
+**Step 1 : Create Dependency**
+
+    <!-- Mongodb Dependency -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+    
+    Note : Make sure there is no need to Jpa dependency if exist in pom.xml, imediatly commented it.
+   
+**Step 2 : application.properties**
+
+    spring.data.mongodb.uri=mongodb://localhost:27017/test
+    
+    Note : 'test' db by default present into mongo db.
+    
+
+**Step 3 : Domain Class**
+
+* Table should annotated with @Document.
+* Id should annotated with @Id and It would be String type.
+
+      Example : 
+      
+      @Document
+      public class User {
+        @Id
+        private String id;
+        private String username;
+        private String password;
+      
+        // Setter, getter and toString() method. 
+      }
+      
+**Step 4 : Repository Class**
+
+MongoRepository interface will be extended into UserDao interface and pass two argument 
+first one is domain class type and second one is for id which is String type.
+
+    @Repository
+    public interface UserDao extends MongoRepository<User, String> {
+    }
+    
+**Note :** By default mongodb port is 27017.
