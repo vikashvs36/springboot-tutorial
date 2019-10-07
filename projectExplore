@@ -16,6 +16,8 @@ master
   ------------> 'database/mysql_db'
   |
   ------------> 'database/mongo_db'
+  |
+  ------------> 'database/flyway'
 
 
 
@@ -40,7 +42,7 @@ master
 --------- 03-10-2019 -----------------
 > Commit : 'Execute Liquibase Database Migrations on Startup', "Testing 'Execute Liquibase Database Migrations on Startup' with rest"
   Branch : 'database/liquibase'
-  Message : Implemented connection with my and use Liquibase Database Migration and tested with the Crud operation using Rest API.
+  Message : Implemented connection to use Liquibase Database Migration and tested with the Crud operation using Rest API.
 
 --------- 05-10-2019 -----------------
 > Commit : "Mysql database Integration"
@@ -51,5 +53,10 @@ master
 > Commit : "MongoDb Database Implementation"
   Branch : 'database/mongo_db'
   Message : Implement MongoDb database with Restfull crud operation.
+
+--------- 07-10-2019 -----------------
+> Commit : "Flyway Database Migrations Tool"
+  Branch : 'database/flyway'
+  Message : Implement Flyway Database Migrations Tool.
 
 
