@@ -61,6 +61,26 @@ The following items are output:
 * Logger name: This is usually the source class name (often abbreviated).
 * The log message.
 
+> **Logging Pattern and File Output**
+
+**Logging pattern for the Console**
+
+    logging.pattern.console= %d{yyyy-MM-dd HH:mm:ss} - %msg%n
+
+**Logging pattern for the File**
+
+    logging.pattern.file= %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%
+    
+**File Output**
+    
+Create folder automatic and file as well
+
+    #Path logging
+    logging.path=logs 
+
+    # File logging
+    logging.file=AppLog/myapp.log  
+
 > **Log Levels**
 
 All the supported logging systems can have the logger levels set in **application.properties** by using **logging.level.<logger-name>=<level_name>** where **level**
@@ -85,3 +105,5 @@ is one of TRACE, DEBUG, INFO, WARN, ERROR, FATAL, or OFF.
     #LoggerController class
     logging.level.com.springBootTutorial.controller.LoggerController=info
     
+
+
