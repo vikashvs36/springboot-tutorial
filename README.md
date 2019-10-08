@@ -40,6 +40,8 @@ This tutorial is for beginners and it's purpose to create that learn one by one 
     Commit : 'Implement Devtools Dependency'
     1 parent 89ca782 commit 29fc9251da4168eeab1bb3520e6a70e104fb0be1
     
+# Logging    
+    
 > **Log Format**
 
 By default, if you use the “Starters”, Logback is used for logging. Appropriate Logback routing is also included to ensure that dependent libraries that use Java Util Logging, Commons Logging, Log4J, or SLF4J all work correctly.
@@ -59,3 +61,27 @@ The following items are output:
 * Logger name: This is usually the source class name (often abbreviated).
 * The log message.
 
+> **Log Levels**
+
+All the supported logging systems can have the logger levels set in **application.properties** by using **logging.level.<logger-name>=<level_name>** where **level**
+is one of TRACE, DEBUG, INFO, WARN, ERROR, FATAL, or OFF. 
+
+**Note :** In hierarchy **INFO** log level is by default enabled in spring boot but we have to define for DEBUG. 
+
+**To enable DEBUG in ROOT level log**
+
+    logging.level.root = debug
+    
+**Spring specific module level log**
+
+    logging.level.org.springframework.aop = debug
+    logging.level.org.springframework.web = info
+    logging.level.org.hibernate=error
+    
+**Application's Class level log**
+
+    #SpringBootTutorialApplication class
+    logging.level.com.springBootTutorial.SpringBootTutorialApplication=warn
+    #LoggerController class
+    logging.level.com.springBootTutorial.controller.LoggerController=info
+    
