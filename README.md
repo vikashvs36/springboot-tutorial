@@ -33,3 +33,25 @@ This tutorial is for beginners and it's purpose to create that learn one by one 
 
     Branch : 'database/mongo_db'
     commit : 1 parent 4242600 commit ab766431a7c4c1f4e94bbccdabc3cc4fbe79f85c
+    
+> **Developer Tools**
+
+Spring Boot includes an additional set of tools that can make the application development experience a little more pleasant.
+
+**Add Dependency**
+
+    <!-- Devtools Dependency -->
+    <dependency>
+    	<groupId>org.springframework.boot</groupId>
+   	    <artifactId>spring-boot-devtools</artifactId>
+   		<optional>true</optional>
+    </dependency>
+    
+By adding this dependency, It can be reflect the changes without restart the application.
+
+**Note :** If your project not auto reload yet, you can check your IDE settings. Like if you are using intellij idea then 
+go to "run/debug configuration" and change the settings as given below: 
+running application update policy:
+1. On update action      :  Update trigger file
+2. On frame deactivation :  update classes and resources.
+ 
