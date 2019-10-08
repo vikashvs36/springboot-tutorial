@@ -39,3 +39,23 @@ This tutorial is for beginners and it's purpose to create that learn one by one 
     Branch : 'dependency/devtool'
     Commit : 'Implement Devtools Dependency'
     1 parent 89ca782 commit 29fc9251da4168eeab1bb3520e6a70e104fb0be1
+    
+> **Log Format**
+
+By default, if you use the “Starters”, Logback is used for logging. Appropriate Logback routing is also included to ensure that dependent libraries that use Java Util Logging, Commons Logging, Log4J, or SLF4J all work correctly.
+
+The default log output from Spring Boot resembles the following example:
+
+    2019-03-05 10:57:51.112  INFO 45469 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/7.0.52
+    2019-03-05 10:57:51.253  INFO 45469 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+    
+The following items are output:
+
+* Date and Time: Millisecond precision and easily sortable.
+* Log Level: ERROR, WARN, INFO, DEBUG, or TRACE.
+* Process ID.
+* A --- separator to distinguish the start of actual log messages.
+* Thread name: Enclosed in square brackets (may be truncated for console output).
+* Logger name: This is usually the source class name (often abbreviated).
+* The log message.
+
