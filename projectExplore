@@ -18,6 +18,8 @@ master
   ------------> 'database/mongo_db'
   |
   ------------> 'database/flyway'
+  |
+  ------------> 'dependency/devtool'
 
 
 
@@ -58,5 +60,10 @@ master
 > Commit : "Flyway Database Migrations Tool"
   Branch : 'database/flyway'
   Message : Implement Flyway Database Migrations Tool.
+
+--------- 07-10-2019 -----------------
+> Commit : "Implement Devtools Dependency"
+  Branch : 'dependency/devtool'
+  Message : Implement Developer Tool.
 
 

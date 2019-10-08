@@ -33,3 +33,9 @@ This tutorial is for beginners and it's purpose to create that learn one by one 
 
     Branch : 'database/mongo_db'
     commit : 1 parent 4242600 commit ab766431a7c4c1f4e94bbccdabc3cc4fbe79f85c
+    
+> **Developer Tools**
+
+    Branch : 'dependency/devtool'
+    Commit : 'Implement Devtools Dependency'
+    1 parent 89ca782 commit 29fc9251da4168eeab1bb3520e6a70e104fb0be1
