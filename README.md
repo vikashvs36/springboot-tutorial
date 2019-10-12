@@ -39,3 +39,46 @@ This tutorial is for beginners and it's purpose to create that learn one by one 
     Branch : 'dependency/devtool'
     Commit : 'Implement Devtools Dependency'
     1 parent 89ca782 commit 29fc9251da4168eeab1bb3520e6a70e104fb0be1
+    
+    
+# AOP (Aspect Oriented Programming) with Spring
+
+> **Add Dependency**
+
+    <!-- Spring Aop -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+    	<artifactId>spring-aop</artifactId>
+    </dependency> 
+    
+    <!-- H2 Database (Optional)-->
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+    
+> **PointCut**
+
+    @Aspect
+    public class PointcutDefinition {
+    
+        @Pointcut("within(com.springBootTutorial.service..*)")
+        public void serviceLayer() { }
+    }
+    
+> **@Before Advice**
+
+    @Before(value = "com.springBootTutorial.aop.pointcut.PointcutDefinition.serviceLayer()")
+    public void beforeAccountMethodExecution() {
+        System.out.println("Before Logging Account Access.");
+    }
+    
+> **@After Advice**
+
+    @After("com.springBootTutorial.aop.pointcut.PointcutDefinition.serviceLayer()")
+    public void afterAccountMethodExecution() {
+        System.out.println("After Logging Account Access.");
+    }
+    
+**Note :** It is mandatry to annotate with **@Aspect** and **@Component** in that class where we will use **@Before** and **@After** advice
