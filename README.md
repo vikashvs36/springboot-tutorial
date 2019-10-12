@@ -58,7 +58,7 @@ This tutorial is for beginners and it's purpose to create that learn one by one 
         <scope>runtime</scope>
     </dependency>
     
- > **PointCut**
+> **PointCut**
 
 An example will help make this distinction between a pointcut signature and a pointcut expression clear. The following 
 example defines a pointcut named 'serviceLayer' that will match the execution of any method named 'updateAccountBalance':
@@ -116,3 +116,23 @@ After advice must be prepared to handle both normal and exception return conditi
     }
     
 **Note :** It is mandatry to annotate with **@Aspect** and **@Component** in that class where we will use **@Before** and **@After** advice
+
+> **JoinPoint**
+
+* In your aspect class, create an advice method and take JoinPoint as an argument:
+
+      @Before(value = "com.springBootTutorial.aop.pointcut.PointcutDefinition.serviceLayer()")
+      public void beforeAccountMethodExecution(JoinPoint joinPoint) { }
+      
+* In that method, get the list of arguments of the target method:
+  
+      Object[] arguments = joinPoint.getArgs();
+      Arrays.toString(joinPoint.getArgs()));
+      
+* Get the class name preceded by the target method name:
+
+      String className = joinPoint.getSignature().getDeclaringTypeName();
+      
+* Get the method name preceded by the target method name:
+      
+      String methodName = joinPoint.getSignature().getName();
