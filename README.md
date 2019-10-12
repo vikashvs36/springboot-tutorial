@@ -58,14 +58,46 @@ This tutorial is for beginners and it's purpose to create that learn one by one 
         <scope>runtime</scope>
     </dependency>
     
-> **PointCut**
+ > **PointCut**
 
-    @Aspect
-    public class PointcutDefinition {
+An example will help make this distinction between a pointcut signature and a pointcut expression clear. The following 
+example defines a pointcut named 'serviceLayer' that will match the execution of any method named 'updateAccountBalance':
+
+     // Example 1 :
+     @Pointcut("execution(* updateAccountBalance(..))")// the pointcut expression
+     private void serviceLayer() {}// the pointcut signature
     
-        @Pointcut("within(com.springBootTutorial.service..*)")
-        public void serviceLayer() { }
-    }
+     // Example 2 :
+     @Aspect
+     public class PointcutDefinition {
+       @Pointcut("within(com.springBootTutorial.service..*)")
+       public void serviceLayer() { }
+     }
+     
+* execution - for matching method execution join points, this is the primary pointcut designator you will use when working with Spring AOP
+* within - limits matching to join points within certain types (simply the execution of a method declared within a matching type when using Spring AOP)     
+* target - limits matching to join points (the execution of methods when using Spring AOP) where the target object 
+(application object being proxied) is an instance of the given type
+* args - limits matching to join points (the execution of methods when using Spring AOP) where the arguments are instances of the given types
+* @annotation - limits matching to join points where the subject of the join point (method being executed in Spring AOP) has the given annotation
+
+**Note :**
+* In the @AspectJ annotation-style of AOP, a pointcut signature is provided by a regular method definition, and the pointcut 
+  expression is indicated using the @Pointcut annotation (the method serving as the pointcut signature must have a void return type).
+    
+* Pointcut expressions can be combined using '&&', '||' and '!'. It is also possible to refer to pointcut expressions by name.
+
+> **Difference between Within and Excution**
+
+**Execution** matches a method and **Within** matches a type.
+
+    @Pointcut("execution(* updateAccountBalance(..))")// the pointcut expression
+    private void serviceLayer() {}// the pointcut signature
+    
+    @Pointcut("within(com.springBootTutorial.service..*)")
+    public void serviceLayer() { }
+
+**Note :** In my point of view if we are using acecution then pointcut will be optional. 
     
 > **@Before Advice**
 
@@ -75,6 +107,8 @@ This tutorial is for beginners and it's purpose to create that learn one by one 
     }
     
 > **@After Advice**
+
+After advice must be prepared to handle both normal and exception return conditions.
 
     @After("com.springBootTutorial.aop.pointcut.PointcutDefinition.serviceLayer()")
     public void afterAccountMethodExecution() {

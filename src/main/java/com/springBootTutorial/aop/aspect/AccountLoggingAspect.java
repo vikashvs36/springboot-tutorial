@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class AccountLoggingAspect {
 
-    @Before(value = "com.springBootTutorial.aop.pointcut.PointcutDefinition.serviceLayer()")
+    /*@Before(value = "com.springBootTutorial.aop.pointcut.PointcutDefinition.serviceLayer()")
     public void beforeAccountMethodExecution() {
         System.out.println("Before Logging Account Access.");
     }
@@ -17,6 +17,10 @@ public class AccountLoggingAspect {
     @After("com.springBootTutorial.aop.pointcut.PointcutDefinition.serviceLayer()")
     public void afterAccountMethodExecution() {
         System.out.println("After Logging Account Access.");
-    }
+    }*/
 
+    @Before("execution(* updateAccountBalance(..))")
+    public void beforeBusinessService() {
+        System.out.println("Before Logging Account Access.");
+    }
 }

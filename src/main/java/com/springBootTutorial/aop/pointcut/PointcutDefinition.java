@@ -6,6 +6,6 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class PointcutDefinition {
 
-    @Pointcut("within(com.springBootTutorial.service..*)")
-    public void serviceLayer() { }
+    /*@Pointcut("within(com.springBootTutorial.service..*)")
+    public void serviceLayer() { }*/
 }
