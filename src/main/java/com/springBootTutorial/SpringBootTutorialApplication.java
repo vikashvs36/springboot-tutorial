@@ -16,7 +16,9 @@ public class SpringBootTutorialApplication {
 
 		AccountServiceImpl accountService = (AccountServiceImpl) applicationContext.getBean("accountServiceImpl", AccountServiceImpl.class);
 
-		accountService.updateAccountBalance(new Account("00001", 1000.0), 500.00);
+		Account account = accountService.getAccount("00001");
+
+		System.out.println(account);
 	}
 
 }

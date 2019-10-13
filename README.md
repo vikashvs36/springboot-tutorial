@@ -136,3 +136,20 @@ After advice must be prepared to handle both normal and exception return conditi
 * Get the method name preceded by the target method name:
       
       String methodName = joinPoint.getSignature().getName();
+      
+> **After returning advice**
+
+After returning advice runs when a matched method execution returns normally. It is declared using the **@AfterReturning** annotation:
+
+    @AfterReturning(value = "com.springBootTutorial.aop.pointcut.PointcutDefinition.serviceLayer()")
+    public void afterReturningAccountMethodExecution() { }
+    
+Sometimes you need access in the advice body to the actual value that was returned. You can use the form of @AfterReturning 
+that binds the return value for this:
+
+    @AfterReturning(value = "execution(* getAccount(..))", returning = "returnValue")
+    public void afterReturningAccountMethodExecution(Object returnValue) {
+        System.out.println("AfterReturning Account Access. ReturnValue : "+returnValue);
+    }
+    
+**Note :** Please note that it is not possible to return a totally different reference when using after-returning advice.

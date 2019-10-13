@@ -1,7 +1,9 @@
 package com.springBootTutorial.aop.aspect;
 
+import com.springBootTutorial.modal.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -22,6 +24,12 @@ public class AccountLoggingAspect {
     @After("com.springBootTutorial.aop.pointcut.PointcutDefinition.serviceLayer()")
     public void afterAccountMethodExecution() {
         System.out.println("After Logging Account Access.");
+    }
+
+    @AfterReturning(value = "execution(* getAccount(..))", returning = "returnValue")
+    public void afterReturningAccountMethodExecution(Account returnValue) {
+        System.out.println("AfterReturning Account Access. ReturnValue : "+returnValue);
+        if (returnValue != null) returnValue.setAmount(returnValue.getAmount()+500);
     }
 
     /*@Before("execution(* updateAccountBalance(..))")
