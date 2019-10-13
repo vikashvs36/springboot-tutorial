@@ -137,7 +137,7 @@ After advice must be prepared to handle both normal and exception return conditi
       
       String methodName = joinPoint.getSignature().getName();
       
-> **After returning advice**
+> **@AfterReturning advice**
 
 After returning advice runs when a matched method execution returns normally. It is declared using the **@AfterReturning** annotation:
 
@@ -153,3 +153,18 @@ that binds the return value for this:
     }
     
 **Note :** Please note that it is not possible to return a totally different reference when using after-returning advice.
+
+> **@AfterThrowing advice**
+
+After throwing advice runs when a matched method execution exits by throwing an exception. It is declared using the **@AfterThrowing** annotation:
+
+    @AfterThrowing(value = "execution(* isExistAccount(..))")
+    public void afterThrowingAccountMethodExecution() { }
+    
+Often we want the advice to run only when exceptions of a given type are thrown, and we also often need access to the 
+thrown exception in the advice body. Use the throwing attribute.
+
+    @AfterThrowing(value = "execution(* isExistAccount(..))", throwing = "npe")
+    public void afterThrowingAccountMethodExecution(NullPointerException npe) {
+        System.out.println("AfterThrowing Logging Account Access. Exception : "+npe);
+    }

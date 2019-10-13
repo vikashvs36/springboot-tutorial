@@ -19,4 +19,11 @@ public class AccountServiceImpl {
         System.out.println("Inside methodUsingGenerics: " + parameter.getClass().getName());
     }
 
+    public Boolean isExistAccount(Account account) throws NullPointerException {
+        if (account == null) {
+            throw new NullPointerException("Not A Valid Account ");
+        }
+        return true;
+    }
+
 }

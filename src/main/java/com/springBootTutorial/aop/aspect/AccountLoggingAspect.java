@@ -2,10 +2,7 @@ package com.springBootTutorial.aop.aspect;
 
 import com.springBootTutorial.modal.Account;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -30,6 +27,11 @@ public class AccountLoggingAspect {
     public void afterReturningAccountMethodExecution(Account returnValue) {
         System.out.println("AfterReturning Account Access. ReturnValue : "+returnValue);
         if (returnValue != null) returnValue.setAmount(returnValue.getAmount()+500);
+    }
+
+    @AfterThrowing(value = "execution(* isExistAccount(..))", throwing = "npe")
+    public void afterThrowingAccountMethodExecution(NullPointerException npe) {
+        System.out.println("AfterThrowing Logging Account Access. Exception : "+npe);
     }
 
     /*@Before("execution(* updateAccountBalance(..))")
