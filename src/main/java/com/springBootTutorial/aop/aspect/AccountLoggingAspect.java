@@ -2,6 +2,7 @@ package com.springBootTutorial.aop.aspect;
 
 import com.springBootTutorial.modal.Account;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class AccountLoggingAspect {
 
-    @Before(value = "com.springBootTutorial.aop.pointcut.PointcutDefinition.serviceLayer()")
+    /*@Before(value = "com.springBootTutorial.aop.pointcut.PointcutDefinition.serviceLayer()")
     public void beforeAccountMethodExecution(JoinPoint joinPoint) {
         // Get the class name from JoinPoint
         String className = joinPoint.getTarget().getClass().getName();
@@ -32,6 +33,20 @@ public class AccountLoggingAspect {
     @AfterThrowing(value = "execution(* isExistAccount(..))", throwing = "npe")
     public void afterThrowingAccountMethodExecution(NullPointerException npe) {
         System.out.println("AfterThrowing Logging Account Access. Exception : "+npe);
+    }*/
+
+    @Around("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..))")
+    public Object aroundAdviceMethodExecution(ProceedingJoinPoint joinPoint) {
+        System.out.println("Before Advice logging Account Access.");
+        Object value=null;
+        try {
+            value = joinPoint.proceed();
+        }catch (Throwable throwable) {
+            System.out.println(throwable.getMessage());
+        }
+        System.out.println("After Advice logging Account Access");
+        System.out.println("Returning Advice : "+value);
+        return value;
     }
 
     /*@Before("execution(* updateAccountBalance(..))")

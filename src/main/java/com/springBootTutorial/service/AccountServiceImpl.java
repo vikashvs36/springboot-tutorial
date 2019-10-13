@@ -11,6 +11,7 @@ public class AccountServiceImpl {
     }
 
     public Account getAccount(String  accountNumber) {
+        System.out.println("AccountNumber : "+accountNumber);
         if (accountNumber !=null) return new Account(accountNumber, 2000.0);
         return null;
     }

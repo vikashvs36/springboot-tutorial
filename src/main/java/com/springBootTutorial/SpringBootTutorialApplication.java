@@ -16,11 +16,11 @@ public class SpringBootTutorialApplication {
 
 		AccountServiceImpl accountService = (AccountServiceImpl) applicationContext.getBean("accountServiceImpl", AccountServiceImpl.class);
 
-		/*Account account = accountService.getAccount("00001");
-		System.out.println(account);*/
+		Account account = accountService.getAccount("00001");
+		System.out.println(account);
 
-		Account account=null;
-		Boolean isExistAccount = accountService.isExistAccount(account);
+		/*Account account=null;
+		Boolean isExistAccount = accountService.isExistAccount(account);*/
 
 	}
 
