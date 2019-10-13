@@ -1,5 +1,6 @@
 package com.springBootTutorial.service;
 
+import com.springBootTutorial.annotation.Auditable;
 import com.springBootTutorial.modal.Account;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ public class AccountServiceImpl {
         account.setAmount(account.getAmount() + amount);
     }
 
+    @Auditable(Auditable.AuditDestination.DATABASE)
     public Account getAccount(String  accountNumber) {
         System.out.println("AccountNumber : "+accountNumber);
         if (accountNumber !=null) return new Account(accountNumber, 2000.0);

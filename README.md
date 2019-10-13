@@ -201,6 +201,30 @@ Around advice is work behalf of all four advices **@Before, @After, @AfterReturn
     @Before("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..)) && args(accountNumber, ..)")
     @Before("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..)) && args(*,accountNumber)")
     
+> **Custom Annotation**
+
+    // How to create custom Annotion.
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Auditable {
+        // Body
+    }
     
+    // How to call the Auditable annotaion in Aop
+    @Before("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..)) && args(accountNumber) && @annotation(auditable)" )
+    public void beforeAccountMethodExecution(String accountNumber, Auditable auditable) {
+        System.out.println("Before Logging. AccountNumber : "+accountNumber);
+        System.out.println("Value from Auditable annotation : "+auditable.value());
+    }
+    
+    // How to call annotation from anywhere
+    @Auditable(Auditable.AuditDestination.DATABASE)
+    public Account getAccount(String  accountNumber) {
+        System.out.println("Value from Auditable annotation : "+auditable.value());
+    }
+    
+    
+
+
     
     

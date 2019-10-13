@@ -1,5 +1,6 @@
 package com.springBootTutorial.aop.aspect;
 
+import com.springBootTutorial.annotation.Auditable;
 import com.springBootTutorial.modal.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -54,8 +55,13 @@ public class AccountLoggingAspect {
         System.out.println("Before Logging Account Access.");
     }*/
 
-    @Before("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..)) && args(accountNumber)")
+    /*@Before("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..)) && args(accountNumber)")
     public void beforeAccountMethodExecution(String accountNumber) {
         System.out.println("Before Logging. AccountNumber : "+accountNumber);
+    }*/
+
+    @Before("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..)) && @annotation(auditable)" )
+    public void beforeAccountMethodExecution(Auditable auditable) {
+        System.out.println("Value from Auditable annotation : "+auditable.value());
     }
 }
