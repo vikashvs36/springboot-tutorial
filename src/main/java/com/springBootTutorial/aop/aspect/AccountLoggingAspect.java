@@ -35,7 +35,7 @@ public class AccountLoggingAspect {
         System.out.println("AfterThrowing Logging Account Access. Exception : "+npe);
     }*/
 
-    @Around("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..))")
+    /*@Around("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..))")
     public Object aroundAdviceMethodExecution(ProceedingJoinPoint joinPoint) {
         System.out.println("Before Advice logging Account Access.");
         Object value=null;
@@ -47,10 +47,15 @@ public class AccountLoggingAspect {
         System.out.println("After Advice logging Account Access");
         System.out.println("Returning Advice : "+value);
         return value;
-    }
+    }*/
 
-    /*@Before("execution(* updateAccountBalance(..))")
+    /*@Before("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..))")
     public void beforeBusinessService() {
         System.out.println("Before Logging Account Access.");
     }*/
+
+    @Before("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..)) && args(accountNumber)")
+    public void beforeAccountMethodExecution(String accountNumber) {
+        System.out.println("Before Logging. AccountNumber : "+accountNumber);
+    }
 }

@@ -187,4 +187,20 @@ Around advice is work behalf of all four advices **@Before, @After, @AfterReturn
         return value;
     }
     
+>  **Args**
+
+    @Before(value = "com.springBootTutorial.aop.pointcut.PointcutDefinition.serviceLayer() && args(accountNumber)")
+    public void beforeAccountMethodExecution(String accountNumber) {
+        System.out.println("Before Logging. AccountNumber : "+accountNumber);
+    }
+    
+    // Get single argument
+    @Before("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..)) && args(accountNumber)")
+    
+    // Get one value from multiple argument
+    @Before("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..)) && args(accountNumber, ..)")
+    @Before("execution(* com.springBootTutorial.service.AccountServiceImpl.getAccount(..)) && args(*,accountNumber)")
+    
+    
+    
     
