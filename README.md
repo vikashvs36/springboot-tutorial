@@ -39,3 +39,83 @@ This tutorial is for beginners and it's purpose to create that learn one by one 
     Branch : 'dependency/devtool'
     Commit : 'Implement Devtools Dependency'
     1 parent 89ca782 commit 29fc9251da4168eeab1bb3520e6a70e104fb0be1
+    
+## Spring Data
+
+### Redis
+Redis is popular in-memory data structure store. Redis is driven by a keystore-based data structure to persist data and 
+can be used as a database, cache, message broker, etc.
+
+**Step to implement Redis**
+
+* **Install Into System or Server**
+
+      1. Download the redis from redis.io/download
+      2. How to run the redis server
+        a. /opt/redis-5.0.5$ make
+        b. :$ cd /opt/redis-5.0.5/src
+        c. :$ redis-server
+      3. How to use redis client
+        a. :$ cd /opt/redis-5.0.5/src
+        b. :$ ./redis-cli
+        c. 127.0.0.1:6379> ping 
+        
+*  **Add Dependencies**
+
+       <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+       </dependency>
+       
+* **Java Configuration**
+
+      @Bean
+      JedisConnectionFactory jedisConnectionFactory() {
+          return new JedisConnectionFactory();
+      }
+       
+      @Bean
+      public RedisTemplate<Object, Object> redisTemplate() {
+          RedisTemplate<Object, Object> template = new RedisTemplate<>();
+          template.setConnectionFactory(jedisConnectionFactory());
+          return template;
+      }
+      
+* **RedisTemplate**
+
+    @Repository
+    public class UserDaoImpl {
+    
+        private RedisTemplate<Object, Object> redisTemplate;
+    
+        private HashOperations hashOperations;
+    
+        private final String KEY = "USER";
+    
+        public UserDaoImpl(RedisTemplate<Object, Object> redisTemplate) {
+            this.redisTemplate = redisTemplate;
+            this.hashOperations = redisTemplate.opsForHash();
+        }
+
+        public void save(User user) {
+            hashOperations.put(KEY, user.getId(), user);
+        }
+    
+        public Map<String, User> findAll() {
+            return hashOperations.entries(KEY);
+        }
+    
+        public User findById(String id) {
+            return  hashOperations.get(KEY, id) ;
+        }
+    
+        public void update(User user) {
+            save(user);
+        }
+    
+        public void delete(String id) {
+            hashOperations.delete(KEY, id);
+        }
+    }
+    
+**Note :** Domain should be implemented to the Serializable interface.  
