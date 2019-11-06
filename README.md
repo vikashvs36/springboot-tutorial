@@ -119,3 +119,50 @@ can be used as a database, cache, message broker, etc.
     }
     
 **Note :** Domain should be implemented to the Serializable interface.  
+
+### Redis Cache
+
+**Step required to implement Redis Cache using Redis Server as backend**
+
+* **Add Dependency**
+
+      Add spring-boot-starter-data-redis dependency given as above.
+      
+* **application.properties**
+
+      spring.cache.type=redis
+      spring.redis.host=localhost
+      spring.redis.port=6379
+      
+      # If you don't need to store nullable cache. 
+      spring.cache.redis.cache-null-values=false
+      # Set the cache time to live
+      spring.cache.redis.time-to-live=600000
+      # By default "cacheName::key" is entries, If you don't need to use prefix
+      spring.cache.redis.use-key-prefix=false
+      
+* **Redis Cache implementation**
+
+      @RestController
+      @EnableCaching
+      @RequestMapping("/api")
+      public class UserController { 
+      
+              @CachePut(value="itemCache",key = "#item")
+              @PostMapping(value = "/item")
+                  public void addItem(Item item) { }
+                    
+              @Cacheable(value="itemCache", key="#id")
+              @GetMapping(value = "/item/{id}")
+                  public Item getItem(int id) { }
+                  
+              @CachePut(value="itemCache",key = "#item",condition = "#result != null")
+              @PutMapping("/items/{item}")
+                  public void updateItem(Item item) { }
+                  
+              @CacheEvict(value="itemCache",key = "#id")
+              @DeleteMapping("/item/{id}")
+                  public void deleteItem(int id) { }        
+      }
+            
+          
